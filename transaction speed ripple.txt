@@ -1,0 +1,36 @@
+const RippleAPI = require('ripple-lib').RippleAPI;
+
+transaction speed in ripple 
+
+
+const api = new RippleAPI({
+  server: 'wss://s.altnet.rippletest.net:51233' // Test network server
+});
+
+const sourceAddress = 'rs8uD4gHnoTHnCntHipF1hxzmVtZZAs1dr'; // my testnet address
+const destinationAddress = 'rPBXwLSxSHVf2pmxnsYNxKgXYzdbou5V8d'; destination address
+const amount = '100'; // amount of xrp to send
+
+async function sendXRP() {
+  await api.connect();
+  const startTime = Date.now(); // record the start time
+  const preparedTx = await api.prepareTransaction({
+    "TransactionType": "Payment",
+    "Account": sourceAddress,
+    "Amount": api.xrpToDrops(amount),
+    "Destination": destinationAddress
+  }, {
+    "maxLedgerVersionOffset": 5
+  });
+  const signedTx = api.sign(preparedTx.txJSON, 'sEdTgnbAPESkmf9LJw8rELv384Srsix'); //  testnet secret
+  const result = await api.submit(signedTx.signedTransaction);
+  const endTime = Date.now(); // record the end time
+  console.log(`Transaction confirmed in ${(endTime - startTime) / 1000} seconds`); // print the time difference in seconds
+  await api.disconnect();
+}
+sendXRP();
+
+
+
+Output: 
+Transaction confirmed in 0.798 seconds

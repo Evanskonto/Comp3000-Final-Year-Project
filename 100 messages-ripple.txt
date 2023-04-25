@@ -1,0 +1,255 @@
+100 messages 
+
+const RippleAPI = require('ripple-lib').RippleAPI;
+
+const api = new RippleAPI({
+  server: 'wss://s.altnet.rippletest.net:51233' // Test network server
+});
+
+const sourceAddress = 'rGaXY87RV7ShmzmNWWwBWaWPfYuwp2ZMqu';
+const destinationAddress = 'rwaM91Hvjo8BG4EsoqCyKgHTdLK4egrhMA';
+const amount = '5';
+const message = 'THIS IS MY TEST MESSAGE';
+const numTransactions = 100; // number of transactions to send
+
+async function sendMessage() {
+  await api.connect();
+  const startTime = Date.now(); // start time of sending transactions
+
+  for (let i = 0; i < numTransactions; i++) {
+    const preparedTx = await api.prepareTransaction({
+      "TransactionType": "Payment",
+      "Account": sourceAddress,
+      "Amount": api.xrpToDrops(amount),
+      "Destination": destinationAddress,
+      "Memos": [{
+        "Memo": {
+          "MemoType": "68656c6c6f",
+          "MemoData": Buffer.from(`${message} ${i+1}`).toString('hex') // Add a unique identifier to >        }
+      }]
+    }, {
+      "maxLedgerVersionOffset": 5
+    });
+    const signedTx = api.sign(preparedTx.txJSON, 'sEdVUKm8iJeQpsxh1jc8v6WtyB3rnPp');
+    const result = await api.submit(signedTx.signedTransaction);
+    console.log(`Transaction ${i+1}: ${result.resultCode}`);
+  }
+
+  const endTime = Date.now(); // end time of sending transactions
+  const totalTime = (endTime - startTime) / 1000; // total time in seconds
+  console.log(`Sent ${numTransactions} messages in ${totalTime} seconds`);
+  console.log(`Average message speed: ${numTransactions / totalTime} mps`);
+
+  await api.disconnect();
+}
+
+sendMessage();
+
+Output:
+Sent 100 messages in 54.81 seconds
+Average message speed: 1.8244845831052727 mps
+
+2nd 100 message
+
+const RippleAPI = require('ripple-lib').RippleAPI;
+
+const api = new RippleAPI({
+  server: 'wss://s.altnet.rippletest.net:51233' // Test network server
+});
+
+const sourceAddress = 'raAtCNikbynXprybzxnMtmt7vVPQPxDDt4';
+const destinationAddress = 'rGaXY87RV7ShmzmNWWwBWaWPfYuwp2ZMqu';
+const amount = '5';
+const message = 'THIS IS MY TEST MESSAGE';
+const numTransactions = 100; // number of transactions to send
+
+async function sendMessage() {
+  await api.connect();
+  const startTime = Date.now(); // start time of sending transactions
+
+  for (let i = 0; i < numTransactions; i++) {
+    const preparedTx = await api.prepareTransaction({
+      "TransactionType": "Payment",
+      "Account": sourceAddress,
+      "Amount": api.xrpToDrops(amount),
+      "Destination": destinationAddress,
+      "Memos": [{
+        "Memo": {
+          "MemoType": "68656c6c6f",
+          "MemoData": Buffer.from(`${message} ${i+1}`).toString('hex') // Add a unique identifier to >        }
+      }]
+    }, {
+      "maxLedgerVersionOffset": 5
+    });
+    const signedTx = api.sign(preparedTx.txJSON, 'sEdTrFHjcG8SnuSBzG4fJCjWqsGEayi');
+    const result = await api.submit(signedTx.signedTransaction);
+    console.log(`Transaction ${i+1}: ${result.resultCode}`);
+  }
+
+  const endTime = Date.now(); // end time of sending transactions
+  const totalTime = (endTime - startTime) / 1000; // total time in seconds
+  console.log(`Sent ${numTransactions} messages in ${totalTime} seconds`);
+  console.log(`Average message speed: ${numTransactions / totalTime} mps`);
+
+  await api.disconnect();
+}
+
+sendMessage();
+
+Output:
+Sent 100 messages in 51.698 seconds
+Average message speed: 1.934310805060157 mps
+
+
+3rd message
+
+const RippleAPI = require('ripple-lib').RippleAPI;
+
+const api = new RippleAPI({
+  server: 'wss://s.altnet.rippletest.net:51233' // Test network server
+});
+
+const sourceAddress = 'raAtCNikbynXprybzxnMtmt7vVPQPxDDt4';
+const destinationAddress = 'rGaXY87RV7ShmzmNWWwBWaWPfYuwp2ZMqu';
+const amount = '5';
+const message = 'THIS IS MY TEST MESSAGE';
+const numTransactions = 100; // number of transactions to send
+
+async function sendMessage() {
+  await api.connect();
+  const startTime = Date.now(); // start time of sending transactions
+
+  for (let i = 0; i < numTransactions; i++) {
+    const preparedTx = await api.prepareTransaction({
+      "TransactionType": "Payment",
+      "Account": sourceAddress,
+      "Amount": api.xrpToDrops(amount),
+      "Destination": destinationAddress,
+      "Memos": [{
+        "Memo": {
+          "MemoType": "68656c6c6f",
+          "MemoData": Buffer.from(`${message} ${i+1}`).toString('hex') // Add a unique identifier to >        }
+      }]
+    }, {
+      "maxLedgerVersionOffset": 5
+    });
+    const signedTx = api.sign(preparedTx.txJSON, 'sEdTrFHjcG8SnuSBzG4fJCjWqsGEayi');
+    const result = await api.submit(signedTx.signedTransaction);
+    console.log(`Transaction ${i+1}: ${result.resultCode}`);
+  }
+
+  const endTime = Date.now(); // end time of sending transactions
+  const totalTime = (endTime - startTime) / 1000; // total time in seconds
+  console.log(`Sent ${numTransactions} messages in ${totalTime} seconds`);
+  console.log(`Average message speed: ${numTransactions / totalTime} mps`);
+
+  await api.disconnect();
+}
+
+sendMessage();
+
+Output:
+Sent 100 messages in 53.413 seconds
+Average message speed: 1.8722033961769609 mps
+
+4th message
+
+const RippleAPI = require('ripple-lib').RippleAPI;
+
+const api = new RippleAPI({
+  server: 'wss://s.altnet.rippletest.net:51233' // Test network server
+});
+
+const sourceAddress = 'r3EaA23Vh2tyKh6v1wJkVkBb6NTCoM3YgR';
+const destinationAddress = 'rGaXY87RV7ShmzmNWWwBWaWPfYuwp2ZMqu';
+const amount = '5';
+const message = 'THIS IS MY TEST MESSAGE';
+const numTransactions = 100; // number of transactions to send
+
+async function sendMessage() {
+  await api.connect();
+  const startTime = Date.now(); // start time of sending transactions
+
+  for (let i = 0; i < numTransactions; i++) {
+    const preparedTx = await api.prepareTransaction({
+      "TransactionType": "Payment",
+      "Account": sourceAddress,
+      "Amount": api.xrpToDrops(amount),
+      "Destination": destinationAddress,
+      "Memos": [{
+        "Memo": {
+          "MemoType": "68656c6c6f",
+          "MemoData": Buffer.from(`${message} ${i+1}`).toString('hex') // Add a unique identifier to >        }
+      }]
+    }, {
+      "maxLedgerVersionOffset": 5
+    });
+    const signedTx = api.sign(preparedTx.txJSON, 'sEdTXd8AHXe8txFUKRHUCp9sMZemSze');
+    const result = await api.submit(signedTx.signedTransaction);
+    console.log(`Transaction ${i+1}: ${result.resultCode}`);
+  }
+
+  const endTime = Date.now(); // end time of sending transactions
+  const totalTime = (endTime - startTime) / 1000; // total time in seconds
+  console.log(`Sent ${numTransactions} messages in ${totalTime} seconds`);
+  console.log(`Average message speed: ${numTransactions / totalTime} mps`);
+
+  await api.disconnect();
+}
+
+sendMessage();
+
+Output:
+Sent 100 messages in 12.464 seconds
+Average message speed: 8.023106546854942 mps
+
+5th message
+
+const RippleAPI = require('ripple-lib').RippleAPI;
+
+const api = new RippleAPI({
+  server: 'wss://s.altnet.rippletest.net:51233' // Test network server
+});
+
+const sourceAddress = 'rNc7rzMpY9xEy2PjPhLyPTQRDxyQmuuSuZ';
+const destinationAddress = 'rGaXY87RV7ShmzmNWWwBWaWPfYuwp2ZMqu';
+const amount = '5';
+const message = 'THIS IS MY TEST MESSAGE';
+const numTransactions = 100; // number of transactions to send
+
+async function sendMessage() {
+  await api.connect();
+  const startTime = Date.now(); // start time of sending transactions
+
+  for (let i = 0; i < numTransactions; i++) {
+    const preparedTx = await api.prepareTransaction({
+      "TransactionType": "Payment",
+      "Account": sourceAddress,
+      "Amount": api.xrpToDrops(amount),
+      "Destination": destinationAddress,
+      "Memos": [{
+        "Memo": {
+          "MemoType": "68656c6c6f",
+          "MemoData": Buffer.from(`${message} ${i+1}`).toString('hex') // Add a unique identifier to >        }
+      }]
+    }, {
+      "maxLedgerVersionOffset": 5
+    });
+    const signedTx = api.sign(preparedTx.txJSON, 'sEdSeEXMRX13d6Vx7EWWrD1QJJWQxdr');
+    const result = await api.submit(signedTx.signedTransaction);
+    console.log(`Transaction ${i+1}: ${result.resultCode}`);
+  }
+
+  const endTime = Date.now(); // end time of sending transactions
+  const totalTime = (endTime - startTime) / 1000; // total time in seconds
+  console.log(`Sent ${numTransactions} messages in ${totalTime} seconds`);
+  console.log(`Average message speed: ${numTransactions / totalTime} mps`);
+
+  await api.disconnect();
+}
+
+sendMessage();
+
+Output:
+Sent 100 messages in 12.346 seconds
+Average message speed: 8.099789405475457 mps

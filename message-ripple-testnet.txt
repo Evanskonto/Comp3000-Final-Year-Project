@@ -1,0 +1,36 @@
+send-message to the ripple testnet 
+
+const RippleAPI = require('ripple-lib').RippleAPI;
+
+const api = new RippleAPI({
+  server: 'wss://s.altnet.rippletest.net:51233' // Test network server
+});
+
+const sourceAddress = 'rpuJTDBgzWUGQz5dTy5C9NogCXcHWUa6nJ';  my testnet address
+const destinationAddress = 'rwaM91Hvjo8BG4EsoqCyKgHTdLK4egrhMA'; destination address
+const amount = '100'; the amount of XRP
+const message = 'THIS IS MY TEST MESSAGE';
+
+async function sendMessage() {
+  await api.connect();
+  const preparedTx = await api.prepareTransaction({
+    "TransactionType": "Payment",
+    "Account": sourceAddress,
+    "Amount": api.xrpToDrops(amount),
+    "Destination": destinationAddress,
+    "Memos": [{
+      "Memo": {
+        "MemoType": "68656c6c6f",
+        "MemoData": Buffer.from(message).toString('hex')
+      }
+    }]
+  }, {
+    "maxLedgerVersionOffset": 5
+  });
+  const signedTx = api.sign(preparedTx.txJSON, 'sEdVayiSjrQ4T2LzD8QPj7cnHm4245J'); secret key
+  const result = await api.submit(signedTx.signedTransaction);
+  console.log(result);
+  await api.disconnect();
+}
+
+sendMessage();
