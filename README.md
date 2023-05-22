@@ -1,5 +1,5 @@
 # Comp3000-Final-Year-Project
-Comparison and Analysis of Different Blockchain Solutions In Internet of The Things.
+
 The integration of blockchain technology with the Internet of Things (IoT) has a
 become a topic of increasing interest in recent years. The decentralized and
 immutable nature of blockchain’s ledger can provide security, and efficiency for IoT
