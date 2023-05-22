@@ -1,0 +1,52 @@
+OPEN TERMINAL  cd ~/Downloads/litecoin-0.21.2.2/bin
+THEN 
+ TO RUN ./litecoind -testnet
+
+Open new terminal 
+
+cd ~/Downloads/litecoin-0.21.2.2/bin
+the command below is for creating a new wallet with name mywallet
+./litecoin-cli -testnet createwallet "mywallet"
+the command below is for getting new address
+./litecoin-cli -testnet -rpcwallet=mywallet getnewaddress
+address info 
+./litecoin-cli -testnet getaddressinfo tltc1qjlnq6xkegk4vej5fsvwlkpj4y98hgfzey9cdt6
+
+blockchain info
+./litecoin-cli -testnet getblockchaininfo
+
+address info
+./litecoin-cli -testnet getaddressinfo tltc1qdr263w2qpva8v7fahx36dmwq292e8xrf2g6shp
+
+./litecoin-cli -testnet listunspent 0 99999 "[\"tltc1qdr263w2qpva8v7fahx36dmwq292e8xrf2g6shp\"]"
+[
+  {
+    "txid": "a249e5c22ca136041c942c628c207793e011c5b7c4531b9891c95cb954b2a6cc",
+    "amount": 1.00000000,
+    "confirmations": 0,
+    "spendable": true,
+    "address": "tltc1qdr263w2qpva8v7fahx36dmwq292e8xrf2g6shp",
+    "label": "",
+    "vout": 0,
+    "scriptPubKey": "001468d5a8b9400b3a76793db9a3a6edc05155939869",
+    "solvable": true,
+    "desc": "wpkh([a3458ad7/0'/0'/1']029c2c1769ab812e63fb419ac38227c91b244402898c78011a9d38388c3d1b5f41)#p9y9c0az",
+    "safe": false
+  }
+]
+
+sending litecoins to this address 
+./litecoin-cli -testnet sendtoaddress tltc1qjlnq6xkegk4vej5fsvwlkpj4y98hgfzey9cdt6 0.5
+outputs this id 
+16101eff85483dfdad309d486b8523456554d719f410ba60408ebddb0fa40480
+to see if the transaction is confirmed
+./litecoin-cli -testnet gettransaction 16101eff85483dfdad309d486b8523456554d719f410ba60408ebddb0fa40480
+
+with this command you get the private key of an address
+
+./litecoin-cli -testnet dumpprivkey tltc1qdr263w2qpva8v7fahx36dmwq292e8xrf2g6shp
+cRhB8pwD3kFiKnpr67f5Aq1kaac2hTVwuPmgPcygULLyq5vyJbYu
+
+this one if for getting the network info
+./litecoin-cli -testnet getnetworkinfo
+{
